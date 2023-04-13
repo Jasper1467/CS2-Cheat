@@ -16,6 +16,7 @@
 #include "../Dependencies/ImGui/imgui_impl_win32.h"
 
 #include "../Utilities/Renderer.h"
+#include "../Utilities/Client.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -56,8 +57,10 @@ void Hooks::Initialize()
 
 	MH_Initialize();
 
-	MH_CreateHook(SIGNATURE_SCAN("client.dll", "48 89 5C 24 10 56 48 83 EC 30 8B 05 ? ? ? ?").Get<void*>(), hkFrameStageNotify,
+	MH_CreateHook(SIGNATURE_SCAN(CLIENT_DLL, "48 89 5C 24 10 56 48 83 EC 30 8B 05 ? ? ? ?").Get<void*>(), hkFrameStageNotify,
 		(void**)m_oFrameStageNotify);
+
+	MH_CreateHook(SIGNATURE_SCAN(CLIENT_DLL, "81 FA FE 7F 00 00 77 3B").Get<void*>(), hkGetEntityByIndex, (void**)m_oGetEntityByIndex);
 
 	MH_EnableHook(MH_ALL_HOOKS);
 }
@@ -184,4 +187,18 @@ void __fastcall Hooks::hkFrameStageNotify(void* ecx, int nStage)
 {
 	//Managers::m_pFrameStageNotify->getReturnValue<decltype(&hkFrameStageNotify)>()(ecx, nStage);
 	m_oFrameStageNotify(ecx, nStage);
+}
+
+// FIXME: Does this hook not get called?
+void* __fastcall Hooks::hkGetEntityByIndex(void* a1, int nIndex)
+{
+	for (auto Ent : Client::m_Entities)
+	{
+		if (Ent.second = nIndex)
+			return m_oGetEntityByIndex(a1, nIndex);
+	}
+
+	Client::m_Entities.push_back({a1, nIndex});
+
+	return m_oGetEntityByIndex(a1, nIndex);
 }

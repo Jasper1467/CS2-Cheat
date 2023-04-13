@@ -7,6 +7,10 @@
 
 #include "CAddress.h"
 
+#define CLIENT_DLL ("client.dll")
+#define ENGINE2_DLL ("engine2.dll")
+#define SCHEMASYSTEM_DLL ("schemasystem.dll")
+
 namespace SigScanner
 {
 	struct Region_t

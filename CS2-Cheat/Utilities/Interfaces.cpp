@@ -36,5 +36,9 @@ T FindInterface(const char* szModule, const char* szInterface)
 
 void Interfaces::Initialize()
 {
-	m_pInput = FindInterface<void*>("client.dll", "Source2Client002");
+	m_pInput = FindInterface<void*>(CLIENT_DLL, "Source2Client002");
+	m_pResourceService = FindInterface<CGameResourceService*>(ENGINE2_DLL, "GameResourceServiceClientV001");
+	m_pSchemaSystem = FindInterface<CSchemaSystem*>(SCHEMASYSTEM_DLL, "SchemaSystem_001");
+
+	m_pEntitySystem = m_pResourceService->GetGameEntitySystem();
 }

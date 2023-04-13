@@ -26,4 +26,8 @@ namespace Hooks
 	using FrameStageNotifyFn = void(__fastcall*)(void*, int);
 	inline FrameStageNotifyFn m_oFrameStageNotify;
 	void __fastcall hkFrameStageNotify(void* ecx, int nStage);
+
+	using GetEntityByIndexFn = void*(__fastcall*)(void*, int);
+	inline GetEntityByIndexFn m_oGetEntityByIndex;
+	void* __fastcall hkGetEntityByIndex(void* a1, int nIndex);
 }

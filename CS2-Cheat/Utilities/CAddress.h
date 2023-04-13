@@ -30,7 +30,7 @@ public:
 		return *this;
 	}
 
-	CAddress& ToAbsolute(int nPreOffset, int nPostOffset)
+	CAddress& ToAbsolute(int nPreOffset = 0, int nPostOffset = 0)
 	{
 		if (m_nValue)
 		{
@@ -49,6 +49,18 @@ public:
 				m_nValue = *(uintptr_t*)(m_nValue);
 
 		return *this;
+	}
+
+	CAddress& ResolveRip(uintptr_t nRvaOffset, uintptr_t nRipOffset)
+	{
+		if (m_nValue || nRvaOffset || nRipOffset)
+		{
+			uintptr_t rva = m_nValue + nRvaOffset;
+			uintptr_t rip = m_nValue + nRipOffset;
+
+			m_nValue = uintptr_t(rva + rip);
+			return *this;
+		}
 	}
 
 private:

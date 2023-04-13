@@ -1,7 +1,7 @@
 #pragma once
 
 using djb2_t = unsigned long;
-djb2_t djb2_hash(unsigned char* str)
+constexpr djb2_t djb2_hash(unsigned char* str)
 {
 	unsigned long a = 5381;
 
@@ -12,7 +12,7 @@ djb2_t djb2_hash(unsigned char* str)
 	return a;
 }
 
-djb2_t djb2_hash(const char* str)
+constexpr djb2_t djb2_hash(const char* str)
 {
 	unsigned long a = 5381;
 

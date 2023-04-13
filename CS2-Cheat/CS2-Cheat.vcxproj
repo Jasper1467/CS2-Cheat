@@ -226,8 +226,11 @@
     <ClCompile Include="Features\Visuals.cpp" />
     <ClCompile Include="Hooks\Hooks.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
+    <ClCompile Include="SDK\CHandle.cpp" />
     <ClCompile Include="Utilities\Interfaces.cpp" />
+    <ClCompile Include="Utilities\Math.cpp" />
     <ClCompile Include="Utilities\Renderer.cpp" />
+    <ClCompile Include="Utilities\SchemaSystem.cpp" />
     <ClCompile Include="Utilities\SigScanner.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -370,11 +373,23 @@
     <ClInclude Include="Features\Visuals.h" />
     <ClInclude Include="Hooks\Hooks.h" />
     <ClInclude Include="Menu\Menu.h" />
+    <ClInclude Include="SDK\CEntity.h" />
+    <ClInclude Include="SDK\CGameEntitySystem.h" />
+    <ClInclude Include="SDK\CGameResourceService.h" />
+    <ClInclude Include="SDK\CHandle.h" />
+    <ClInclude Include="SDK\CPlayer.h" />
+    <ClInclude Include="SDK\CSchemaSystem.h" />
     <ClInclude Include="SDK\CUtlTSHash.h" />
+    <ClInclude Include="SDK\CUtlVector.h" />
+    <ClInclude Include="SDK\Vectors.h" />
     <ClInclude Include="Utilities\CAddress.h" />
+    <ClInclude Include="Utilities\Client.h" />
     <ClInclude Include="Utilities\djb2.h" />
     <ClInclude Include="Utilities\Interfaces.h" />
+    <ClInclude Include="Utilities\Math.h" />
+    <ClInclude Include="Utilities\Memory.h" />
     <ClInclude Include="Utilities\Renderer.h" />
+    <ClInclude Include="Utilities\SchemaSystem.h" />
     <ClInclude Include="Utilities\SigScanner.h" />
   </ItemGroup>
   <ItemGroup>
